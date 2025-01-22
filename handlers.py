@@ -15,6 +15,7 @@ async def command_start_handler(message: Message) -> None:
 
 @main_router.message(F.text.startswith('https://www.instagram.com'))
 async def instagram_video_sender(message: Message):
+    await message.answer("Biroz kuting!")
     photos, videos, caption = await instagram_request(message.text)
     if photos:
         for photo in photos:
@@ -22,8 +23,10 @@ async def instagram_video_sender(message: Message):
     if videos:
         for video in videos:
             await message.answer_video(video)
-    # await message.delete()
+    if not videos and not photos:
+        await message.answer("Hech qanday video yoki rasm topilmadi.")
     await message.answer(caption)
+    await message.answer("Yordamim Tekkan Bo'lsa Xursandman☺️")
 
 
 @main_router.message(F.text.contains('tiktok.com'))
@@ -32,3 +35,15 @@ async def tiktok_sender(message: Message):
     await message.answer_video(video)
     await message.answer(title)
     await message.answer_audio(music)
+#
+#
+# @main_router.message(F.text.contains('tiktok.com'))
+# async def tiktok_sender(message: Message):
+#     video, music, title = await tiktok_request(message.text)
+#     await message.answer_video(video)
+#     await message.answer(f"Video sarlavhasi: {title}")
+#     await message.answer_audio(music)
+#
+#     # Musiqani aniqlash
+#     identified_music = await identify_music(video)
+#     await message.answer(f"Videodagi musiqa: {identified_music}")
