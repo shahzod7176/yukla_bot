@@ -1,5 +1,5 @@
 acrcloud==14.10.2020
-aiofiles==24.1.0
+aiofiles==23.2.1
 aiogram==3.17.0
 aiohappyeyeballs==2.4.4
 aiohttp==3.11.11
